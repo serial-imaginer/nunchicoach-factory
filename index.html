@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <title>눈치코치 팩토리 | NunchiCoach Factory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Inter"', '"Noto Sans KR"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      footer a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-header {
+        animation: fadeInDown 0.8s ease-out forwards;
+      }
+
+      .animate-main {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out 0.3s forwards;
+      }
+
+      .info-panel {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+        pointer-events: none;
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      }
+
+      .info-panel.open {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen w-full bg-[#72D6BF] flex flex-col font-sans">
+      <!-- Header Section -->
+      <header class="p-6 md:p-10 flex flex-col items-center w-full">
+        <div class="animate-header flex flex-col items-center gap-6 text-center">
+          <!-- Logo -->
+          <img
+            src="./images/ncf_logo.png"
+            alt="NunchiCoach Factory Logo"
+            class="h-16 w-auto object-contain"
+          />
+
+          <!-- Welcome Text -->
+          <div class="flex flex-col items-center gap-2">
+            <h1 class="text-white text-lg md:text-[28px] font-bold tracking-tight leading-tight max-w-4xl">
+              예술, 지혜, 행운이 함께하는 곳. 눈치코치 팩토리에 오신 것을 환영합니다!
+            </h1>
+            <p class="text-white/90 text-base md:text-xl font-medium italic">
+              Where Art, Wisdom, and Luck Reside Together. Welcome to NCF!
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Area -->
+      <main class="flex-grow flex flex-col px-6 md:px-10 items-center">
+        <div class="animate-main mt-[37px] flex flex-wrap justify-center items-start gap-12 md:gap-20">
+          <!-- Left Item -->
+          <div class="flex flex-col items-center relative">
+            <a
+              href="https://ccs.nunchicoach.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col items-center group cursor-pointer"
+            >
+              <div class="h-[265px] flex items-center justify-center">
+                <img
+                  src="./images/home_ccs_3.png"
+                  alt="눈치코치 상담 편의점"
+                  class="h-full w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-110 group-active:scale-110 will-change-transform"
+                />
+              </div>
+              <span class="text-neutral-700 font-bold text-sm md:text-base text-center mt-4 group-hover:text-neutral-900 transition-colors">
+                눈치코치 상담 편의점
+              </span>
+            </a>
+            <button
+              type="button"
+              onclick="togglePanel('consulting')"
+              class="mt-[38px] w-full bg-[#E0F7FA] active:bg-[#FFD1DC] md:hover:bg-[#FFD1DC] text-neutral-800 font-bold py-3 px-4 rounded-md shadow-sm transition-colors duration-200 whitespace-nowrap focus:outline-none"
+            >
+              콘텐츠/아트 컨설팅
+            </button>
+
+            <!-- Consulting Info Panel -->
+            <div
+              id="panel-consulting"
+              class="info-panel absolute top-full left-1/2 mt-4 z-20 w-[calc(100%+40px)] bg-white rounded-xl shadow-xl border border-black/5 py-3 px-4"
+            >
+              <button
+                type="button"
+                onclick="closeAllPanels()"
+                aria-label="닫기"
+                class="absolute top-2 right-2 p-1 text-neutral-400 hover:text-neutral-600 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+
+              <div class="text-neutral-700 text-[12px] md:text-[14px] space-y-0.5 mb-3 pr-2">
+                <p class="flex items-start gap-2">
+                  <span class="text-[#72D6BF] font-bold">·</span>
+                  <span>전시, 공공미술 기획 및 연출</span>
+                </p>
+                <p class="flex items-start gap-2">
+                  <span class="text-[#72D6BF] font-bold">·</span>
+                  <span>각종 문화 예술 콘텐츠 기획</span>
+                </p>
+                <p class="flex items-start gap-2">
+                  <span class="text-[#72D6BF] font-bold">·</span>
+                  <span>미술 작품 제작 등</span>
+                </p>
+                <p class="pt-1 text-neutral-500 text-[10px] md:text-[12px] italic">
+                  관련 문의는 이메일을 이용해 주세요.
+                </p>
+              </div>
+
+              <a
+                href="mailto:nunchicoach-factory@naver.com"
+                class="flex items-center justify-center gap-2 w-full bg-[#72D6BF] hover:bg-[#5eb5a1] text-white font-bold py-1.5 px-4 rounded-lg transition-colors shadow-sm text-[13px]"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+                메일 보내기
+              </a>
+            </div>
+          </div>
+
+          <!-- Center Item -->
+          <div class="flex flex-col items-center relative">
+            <a
+              href="https://klts.nunchicoach.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col items-center group cursor-pointer"
+            >
+              <div class="h-[265px] flex items-center justify-center">
+                <img
+                  src="./images/home_klts.png"
+                  alt="K - 행운의 부적 가게"
+                  class="h-full w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-110 group-active:scale-110 will-change-transform"
+                />
+              </div>
+              <span class="text-neutral-700 font-bold text-sm md:text-base text-center mt-4 group-hover:text-neutral-900 transition-colors">
+                K - 행운의 부적 가게
+              </span>
+            </a>
+            <button
+              type="button"
+              onclick="togglePanel('vip')"
+              class="mt-[38px] w-full bg-[#E0F7FA] active:bg-[#FFD1DC] md:hover:bg-[#FFD1DC] text-neutral-800 font-bold py-3 px-4 rounded-md shadow-sm transition-colors duration-200 whitespace-nowrap focus:outline-none"
+            >
+              VIP 서비스
+            </button>
+
+            <!-- VIP Info Panel -->
+            <div
+              id="panel-vip"
+              class="info-panel absolute top-full left-1/2 mt-4 z-20 w-[calc(100%+80px)] bg-white rounded-xl shadow-xl border border-black/5 py-3 px-4"
+            >
+              <button
+                type="button"
+                onclick="closeAllPanels()"
+                aria-label="닫기"
+                class="absolute top-2 right-2 p-1 text-neutral-400 hover:text-neutral-600 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+
+              <div class="text-neutral-700 text-[12px] md:text-[14px] space-y-0.5 mb-3 pr-2">
+                <p class="font-black text-[#5eb5a1] mb-1 text-[13px] md:text-[15px]">
+                  *Soul Signature Art
+                </p>
+                <p class="flex items-start gap-1">
+                  <span class="mt-0.5">-</span>
+                  <span>당신의 삶에 에너지를 주는 단 하나의 디지털 예술 작품</span>
+                </p>
+                <p class="flex items-start gap-1">
+                  <span class="mt-0.5">-</span>
+                  <span>사주명리학, 점성학 데이터 기반 작업</span>
+                </p>
+                <p class="flex items-start gap-1">
+                  <span class="mt-0.5">-</span>
+                  <span>제작 기간 약 10일, 제작비 60만원</span>
+                </p>
+                <p class="flex items-start gap-1">
+                  <span class="mt-0.5">-</span>
+                  <span>A3 사이즈, 고화질 이미지 파일 전달</span>
+                </p>
+              </div>
+
+              <a
+                id="vip-mailto-link"
+                href="mailto:nunchicoach-factory@naver.com"
+                class="flex items-center justify-center gap-2 w-full bg-[#72D6BF] hover:bg-[#5eb5a1] text-white font-bold py-1.5 px-4 rounded-lg transition-colors shadow-sm text-[13px]"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+                메일 보내기
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Item -->
+          <div class="flex flex-col items-center relative">
+            <a
+              href="https://www.amazon.com/author/okpaekartproject"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col items-center group cursor-pointer"
+            >
+              <div class="h-[265px] flex items-center justify-center">
+                <img
+                  src="./images/home_emoticoncity.png"
+                  alt="이모티콘시티의 주민들 시리즈"
+                  class="h-full w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-110 group-active:scale-110 will-change-transform"
+                />
+              </div>
+              <span class="text-neutral-700 font-bold text-sm md:text-base text-center mt-4 group-hover:text-neutral-900 transition-colors">
+                이모티콘시티의 주민들 시리즈
+              </span>
+            </a>
+            <button
+              type="button"
+              onclick="togglePanel('about')"
+              class="mt-[38px] w-full bg-[#E0F7FA] active:bg-[#FFD1DC] md:hover:bg-[#FFD1DC] text-neutral-800 font-bold py-3 px-4 rounded-md shadow-sm transition-colors duration-200 whitespace-nowrap focus:outline-none"
+            >
+              회사 소개
+            </button>
+
+            <!-- About Info Panel -->
+            <div
+              id="panel-about"
+              class="info-panel absolute top-full left-1/2 mt-4 z-20 w-[calc(100%+40px)] bg-white rounded-xl shadow-xl border border-black/5 py-3 px-4"
+            >
+              <button
+                type="button"
+                onclick="closeAllPanels()"
+                aria-label="닫기"
+                class="absolute top-2 right-2 p-1 text-neutral-400 hover:text-neutral-600 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+
+              <div class="text-neutral-700 text-[12px] md:text-[14px] leading-relaxed mb-3 pr-2">
+                <p>
+                  눈치코치 팩토리는 문화, 예술 관련<br />다양한 콘텐츠를 기획 및 개발하는 회사입니다.
+                </p>
+              </div>
+
+              <a
+                href="mailto:nunchicoach-factory@naver.com"
+                class="flex items-center justify-center gap-2 w-full bg-[#72D6BF] hover:bg-[#5eb5a1] text-white font-bold py-1.5 px-4 rounded-lg transition-colors shadow-sm text-[13px]"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+                메일 보내기
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer Section -->
+      <footer class="w-full bg-[#B4B4B4] mt-[76px] pt-8 pb-[72px] px-6 md:px-10 border-t border-black/5 text-center">
+        <div class="max-w-6xl mx-auto text-neutral-800 text-[11px] md:text-xs leading-relaxed">
+          <div class="flex flex-wrap justify-center gap-x-4">
+            <span class="font-bold">· 회사명: 눈치코치 팩토리 (NunchiCoach Factory)</span>
+            <span>· 대표: 백종옥</span>
+            <span>· 사업자번호: 363-33-01664</span>
+          </div>
+          <div class="flex flex-wrap justify-center gap-x-4">
+            <span>· 주소: (61097)광주광역시 북구 동림용산로12</span>
+            <span>· 이메일: nunchicoach-factory@naver.com</span>
+          </div>
+          <div class="mt-2 text-neutral-700 font-medium">
+            Copyright © 2026 눈치코치 팩토리. All Rights Reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const panelIds = ['consulting', 'vip', 'about'];
+
+      function togglePanel(target) {
+        panelIds.forEach((id) => {
+          const el = document.getElementById('panel-' + id);
+          if (!el) return;
+          if (id === target) {
+            el.classList.toggle('open');
+          } else {
+            el.classList.remove('open');
+          }
+        });
+      }
+
+      function closeAllPanels() {
+        panelIds.forEach((id) => {
+          const el = document.getElementById('panel-' + id);
+          if (el) el.classList.remove('open');
+        });
+      }
+
+      const vipMailBody = `<소울 시그니처 아트(Soul Signature Art) 제작을 위한 안내>
+
+본 작업은 단순한 장식화나 전통적인 의미의 부적이 아닙니다. 
+귀하의 고유한 우주적 흐름(사주/점성학)을 분석하여, 삶의 에너지를 최적화하는 ‘부적 같은 역할을 하는 현대미술 작품’을 제작하는 과정입니다. 최적의 작품 제작을 위해 아래 정보를 가감 없이 작성해 주시기 바랍니다.
+
+1. 기본 인적 사항
+ * 성명: (입금자 명과 동일하게 작성)
+ * 출생지: (예: 서울특별시 강남구, 정확한 위치)
+ * 생년월일시(양력): (예: 1985년 5월 20일 오후 2시 30분)
+   > 시간을 모를 경우 분석의 정확도가 낮아질 수 있습니다. 가급적 정확한 시간을 기재해 주세요.
+   
+2. 인생의 에너지 그래프 분석
+귀하의 운명적 주기를 확인하기 위한 객관적 지표입니다. 감정적인 서술보다는 사건 중심으로 짧게 기재해 주세요.
+ * 에너지가 가장 높았던 해 (최대 3개):
+    (예: 2015년 - 승진 및 개인 사업 확장 성공)
+    (예: 2019년 - 귀인을 만나 인생의 터닝포인트를 맞이함)
+ * 에너지가 가장 낮았던 해 (최대 3개):
+   (예: 2012년 - 건강 악화 및 금전적 손실)
+   (예: 2021년 - 대인관계 갈등으로 인한 심리적 고립)
+
+# 계좌 이체 성명과 이메일 성명 확인 후 데이터 분석 및 작품 제작을 시작합니다.`;
+
+      const vipLink = document.getElementById('vip-mailto-link');
+      if (vipLink) {
+        vipLink.href =
+          'mailto:nunchicoach-factory@naver.com?subject=' +
+          encodeURIComponent('소울 시그니처 아트 제작 의뢰') +
+          '&body=' +
+          encodeURIComponent(vipMailBody);
+      }
+    </script>
+  </body>
+</html>
